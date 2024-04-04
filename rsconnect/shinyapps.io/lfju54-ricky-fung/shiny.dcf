@@ -1,0 +1,13 @@
+name: shiny
+title: shiny
+username: lfju54-ricky-fung
+account: lfju54-ricky-fung
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11640872
+bundleId: 8444325
+url: https://lfju54-ricky-fung.shinyapps.io/shiny/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: paper/datasheet_template.pdf|paper/datasheet_template.qmd|paper/paper.pdf|paper/paper.qmd|paper/references.bib|README.md
