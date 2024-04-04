@@ -1,0 +1,64 @@
+---
+title: "Analysis of Auschwitz Concentration Camp Deaths"
+author: 
+  - Ricky Fung
+thanks: "Code and data are available at: https://github.com/eatingcorn/auschwitz_death_certificates"
+date: today
+date-format: long
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(shiny)
+library(dplyr)
+library(plotly)
+```
+
+# Data {#sec-data}
+
+The data set used in this study contains partially preserved Death Books (Sterbebücher) of Auschwitz Concentration Camp prisoners. The source appears to be the Sterbebücher, 46 volumes of deaths of prisoners who were registered in the camp and died between July 29, 1941 and December 31, 1943. Information provided has 65,280 observations and include variables; last name, first name(s), date of birth, date of death, birthplace, residence, and religion [@citeWeb].
+
+-   List the variables of interest--- "Last Name", "First Name(s)", "Date of Birth", "Date of Death", "Birthplace", "Residence", "Religion".
+
+- Variable interactable--- "Religion".
+
+Using the R programming language [@citeR] and packages; tidyverse [@citeTidy], shiny [@citeShiny], DT [@citeDT], and dplyr [@citeDplyr], we were able to create an interactive graph and interactive table. The figure shows the number of people murdered by nationality/category and allows the user to specify the groups they are interested in seeing data for.
+
+<div style="margin-top: 50px;"></div>
+
+# Result
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-modelresults
+#| tbl-cap: "Auschwitz Prisoner Deaths By Religion (non-interactive)"
+#| warning: false
+library(readr)
+Auschwitz_Death_Certificates <- read_csv("Auschwitz_Death_Certificates.csv")
+
+
+ggplot(Auschwitz_Death_Certificates, aes(x = Religion)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  labs(title = "Number of Deaths by Religion", x = "Religion", y = "Number of Deaths") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+```
+
+\newpage
+
+# Discussion
+
+Upon analyzing the distribution of religions within the interactive figure, it becomes evident that Catholics and Jews constitute the majority of recorded deaths. Specifically, out of the 65,280 observations, there are 30,036 (\~46%) deaths attributed to individuals of the Catholic faith and 28,511 (\~44%) deaths of Jewish individuals, which is approximately 90% of the deaths among Auschwitz prisoners are accounted for by individuals in this death list are of the Catholic or Jewish faith. The third highest deaths by religion is Protestant with 2145 (3.3%), which is a 40.7% difference between the religion with the second most deaths. This observation suggests that the selection process for sending individuals to concentration camps was not arbitrary but rather targeted, with certain religious groups being disproportionately affected.
+
+\newpage
+
+# References
